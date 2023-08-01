@@ -1,3 +1,5 @@
+
+
 <?php
 include "input_posting.php";
 
@@ -22,9 +24,47 @@ if($conn->connect_error) {
 $query = $conn->query("SELECT * FROM table_posting");
 
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart<?php echo $id_posting; ?>);
+
+    function drawChart<?php echo $id_posting; ?>() {
+        var dataArr = [
+            ['Kategori', 'Total'],
+            <?php
+                $data = [
+                    ['Positif', $positif],
+                    ['Negatif', $negatif],
+                    ['Netral', $netral]
+                ];
+                foreach ($data as $item) {
+                    echo "['" . $item[0] . "', " . $item[1] . "],";
+                }
+            ?>
+        ];
+
+        var options = {
+            title: 'Sentiment Analysis',
+            is3D: true // Ubah TRUE menjadi true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart<?php echo $count_comment; ?>'));
+
+        chart.draw(data, options);
+    }
+</script>
+
+
+
+</head>
 <!-- // $jumlah = $positif + $negatif + $netral;
 // $rata_rata =  $jumlah / $jumlah_kat; -->
-
+<body>
 <table border="0">
     <thead>
         <tr>
@@ -100,29 +140,8 @@ $query = $conn->query("SELECT * FROM table_posting");
                         font-weight: bold;
                     }
                 </style>
-                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                <script type="text/javascript">
-                    google.charts.load('current', { 'packages': ['corechart'] });
-                    google.charts.setOnLoadCallback(drawChart);
-
-                    function drawChart<?php echo $id_posting; ?>() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Kategori', 'Jumlah'],
-                        ['Positif', <?php echo $positif; ?>],
-                        ['Negatif', <?php echo $negatif; ?>],
-                        ['Netral', <?php echo $netral; ?>],
-                    ]);
-
-                        var options = {
-                            title: 'Sentiment Analysis',
-                            is3D: false
-                        };
-
-                        var chart = new google.visualization.PieChart(document.getElementById('piechart<?php echo $count_comment; ?>'));
-
-                        chart.draw(data, options);
-                    }
-                </script>
+                
+            
             <tr>
                 <td><?php echo $i++;?></td>
                 <td><?php echo $id_posting;?></td>
@@ -132,7 +151,7 @@ $query = $conn->query("SELECT * FROM table_posting");
                 <td><?php echo $positif;?></td>
                 <td><?php echo $netral;?></td>
                 <td>
-                    <div id="piechart<?php echo $count_comment; ?>" style="width: 20px; height: 10px;"></div>
+                    <div id="piechart" style="width: 20px; height: 10px;"></div> 
                 </td>
             </tr>
             
@@ -140,7 +159,8 @@ $query = $conn->query("SELECT * FROM table_posting");
 </tbody>
 </table>
 
-
+</body>
+</html>
 
 
 

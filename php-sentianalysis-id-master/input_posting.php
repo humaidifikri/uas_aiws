@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+<head>
+
 <?php
 error_reporting(0);
 $servername = 'localhost';
@@ -14,9 +18,7 @@ if($conn->connect_error) {
 $query = $conn->query("SELECT * FROM table_posting");
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
+
 <style>
     body {
         font-family: Montserrat;
