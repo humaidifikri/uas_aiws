@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 
 // include "input.php";
@@ -13,8 +12,7 @@ $servername = 'localhost';
 $username = 'root';
 $password = '';
 $dbname = 'uas';
-=======
-<?php 
+
 require_once __DIR__ . '/autoload.php';
 $sentiment = new \PHPInsight\Sentiment();
 
@@ -22,7 +20,6 @@ $servername = 'localhost';
 $username = 'root';
 $password = 'bismillah';
 $dbname = 'ai_sentiment';
->>>>>>> 0104cfa2915ee3a1fa28617001df1f4daab62e64
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -30,7 +27,6 @@ if($conn->connect_error) {
     die("Error connecting to database: " . mysqli_error_string($conn));
 }
 
-<<<<<<< HEAD
 $query = $conn->query("SELECT * FROM table_posting");
 
 ?>
@@ -38,13 +34,11 @@ $query = $conn->query("SELECT * FROM table_posting");
 // $rata_rata =  $jumlah / $jumlah_kat; -->
 
 <table border="1" cellspacing="1.5" width="100%">
-=======
 
 
 $query = $conn->query("SELECT * FROM table_posting");
 ?>
 <table border="1" cellspacing="5" width="100%">
->>>>>>> 0104cfa2915ee3a1fa28617001df1f4daab62e64
     <thead>
         <tr>
             <th>No</th>
@@ -57,7 +51,6 @@ $query = $conn->query("SELECT * FROM table_posting");
         </tr>
     </thead>
     <tbody>
-<<<<<<< HEAD
         <?php
         $i=1;
 
@@ -107,17 +100,6 @@ $query = $conn->query("SELECT * FROM table_posting");
         <?php } ?>
 </tbody>
 </table>
-
-
-
-
-
-
-
-
-
-
-=======
         <?php 
         $i=1;
         while ($row = $query->fetch_assoc()) {
@@ -139,4 +121,3 @@ $query = $conn->query("SELECT * FROM table_posting");
     </tbody>
 
 </table>
->>>>>>> 0104cfa2915ee3a1fa28617001df1f4daab62e64
