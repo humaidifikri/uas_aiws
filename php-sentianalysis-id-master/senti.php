@@ -13,14 +13,6 @@ $username = 'root';
 $password = '';
 $dbname = 'uas';
 
-require_once __DIR__ . '/autoload.php';
-$sentiment = new \PHPInsight\Sentiment();
-
-$servername = 'localhost';
-$username = 'root';
-$password = 'bismillah';
-$dbname = 'ai_sentiment';
-
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if($conn->connect_error) {
