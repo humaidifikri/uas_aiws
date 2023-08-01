@@ -15,9 +15,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if($conn->connect_error) {
     die("Error connecting to database: " . mysqli_error_string($conn));
 }
-
-
-
 $query = $conn->query("SELECT * FROM table_posting");
 ?>
 <!-- // $jumlah = $positif + $negatif + $netral;
