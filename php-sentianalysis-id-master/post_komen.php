@@ -16,7 +16,11 @@ if (isset($_POST['id_posting']) && isset($_POST['komen'])){
     $sql = "INSERT INTO table_komentar (id_posting, komentar) VALUES ('$id_posting', '$komentar')";
     
     if ($conn->query($sql) === TRUE) {
-        echo "Data berhasil dimasukkan ke dalam database.";
+        ?>
+            <script language="JavaScript">
+                alert('Input Data Komentar Berhasil');
+            </script>
+        <?php
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -27,3 +31,5 @@ if (isset($_POST['id_posting']) && isset($_POST['komen'])){
 include 'view.php';
 
 ?>
+
+<!-- HUMAIDI FIKRI WAS HERE -->

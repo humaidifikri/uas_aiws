@@ -166,7 +166,6 @@ $query = $conn->query("SELECT * FROM table_posting");
                             chart.draw(data, options);
                         }
                     </script>
-                    <!-- <div id="piechart" style="width: 20px; height: 10px;"></div>  -->
                 </td>
             </tr>
             
@@ -176,3 +175,6 @@ $query = $conn->query("SELECT * FROM table_posting");
 
 </body>
 </html>
+
+
+<!-- HUMAIDI FIKRI WAS HERE -->

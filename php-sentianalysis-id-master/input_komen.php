@@ -83,3 +83,5 @@ $query = $conn->query("SELECT * FROM table_komentar");
         </div>
     </body>
 </html>
+
+<!-- HUMAIDI FIKRI WAS HERE -->
