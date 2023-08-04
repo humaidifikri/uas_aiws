@@ -1,5 +1,3 @@
-
-
 <?php
 include "input_posting.php";
 
@@ -7,7 +5,6 @@ include "input_komen.php";
 
 require_once __DIR__ . '/autoload.php';
 $sentiment = new \PHPInsight\Sentiment();
-
 
 error_reporting(0);
 $servername = 'localhost';
@@ -28,25 +25,24 @@ $query = $conn->query("SELECT * FROM table_posting");
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</head>
+<!-- // $jumlah = $positif + $negatif + $netral;
+// $rata_rata =  $jumlah / $jumlah_kat; -->
+<body>
 <script type="text/javascript">
     google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart<?php echo $id_posting; ?>);
+    google.charts.setOnLoadCallback(drawChart);
 
-    function drawChart<?php echo $id_posting; ?>() {
-        var dataArr = [
-            ['Kategori', 'Total'],
-            <?php
-                $data = [
-                    ['Positif', $positif],
-                    ['Negatif', $negatif],
-                    ['Netral', $netral]
-                ];
-                foreach ($data as $item) {
-                    echo "['" . $item[0] . "', " . $item[1] . "],";
-                }
-            ?>
-        ];
+    function drawChart(negatif, positif, netral) {
+        var data = google.visualization.arrayToDataTable([
+        ['Sentiment', 'Jumlah'],
+        ['Negatif',     negatif],
+        ['Positif',      positif],
+        ['Netral',  netral]
+        ]);
 
         var options = {
             title: 'Sentiment Analysis',
@@ -54,17 +50,10 @@ $query = $conn->query("SELECT * FROM table_posting");
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart<?php echo $count_comment; ?>'));
-
         chart.draw(data, options);
     }
 </script>
 
-
-
-</head>
-<!-- // $jumlah = $positif + $negatif + $netral;
-// $rata_rata =  $jumlah / $jumlah_kat; -->
-<body>
 <table border="0">
     <thead>
         <tr>
@@ -108,6 +97,9 @@ $query = $conn->query("SELECT * FROM table_posting");
                 ?>
 
                 <style>
+                    body{
+                        font-family:'Montserrat';
+                    }
                     table {
                         width: 100%;
                         border-collapse: collapse;
@@ -151,7 +143,30 @@ $query = $conn->query("SELECT * FROM table_posting");
                 <td><?php echo $positif;?></td>
                 <td><?php echo $netral;?></td>
                 <td>
-                    <div id="piechart" style="width: 20px; height: 10px;"></div> 
+                    <div id="piechart-<?php echo $row['id_posting']; ?>" style="width: 300px; height: 200px;"></div>
+                    <script type="text/javascript">
+                        google.charts.setOnLoadCallback(function () {
+                            drawChart(<?php echo $negatif; ?>, <?php echo $positif; ?>, <?php echo $netral; ?>, '<?php echo $row['id_posting']; ?>');
+                        });
+
+                        function drawChart(negatif, positif, netral, id_posting) {
+                            var data = google.visualization.arrayToDataTable([
+                                ['Sentiment', 'Jumlah'],
+                                ['Negatif', negatif],
+                                ['Positif', positif],
+                                ['Netral', netral]
+                            ]);
+
+                            var options = {
+                                title: 'Sentiment Analysis',
+                                // is3D: true,
+                            };
+
+                            var chart = new google.visualization.PieChart(document.getElementById('piechart-' + id_posting));
+                            chart.draw(data, options);
+                        }
+                    </script>
+                    <!-- <div id="piechart" style="width: 20px; height: 10px;"></div>  -->
                 </td>
             </tr>
             
@@ -161,14 +176,3 @@ $query = $conn->query("SELECT * FROM table_posting");
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
