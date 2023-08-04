@@ -16,12 +16,6 @@ if (isset($_POST['judul_posting']) && isset($_POST['tgl_posting'])){
     $tgl = $_POST['tgl_posting'];
     $sql = "INSERT INTO table_posting (judul_posting, tgl_posting) VALUES ('$judul', '$tgl')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Data berhasil dimasukkan ke dalam database.";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
     $conn->close();
 }
 
