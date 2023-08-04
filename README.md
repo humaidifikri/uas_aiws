@@ -1,11 +1,12 @@
 ID-PHPSentiAnalysis - Indonesian Sentiment Analysis in PHP
 ---------
 
-Nama Kelompok :
-Humaidi Fikri
-Ambar Sari
-Citra
+Mata Kuliah :
+- Kecerdasan Buatan
+- Web Service
 
+Nama : Humaidi Fikri
+NIM : 2110220
 
 This is an Indonesian Sentiment Classifier. Originated by James Hennessey and other contributors in phpInsight - Sentiment Analysis in PHP Project (https://github.com/JWHennessey/phpInsight). Some changes are made in the dataset (lib/PHPInsight/dictionaries and lib/PHPInsight/data) that originally use English Langguage converted to Indonesian Langguage. 
 
@@ -16,4 +17,7 @@ This project also added some web interfaces that can recieve input from user.
 
 ## How it work
 The classifier use dictionary of words that is categories as positive, neutral, and negative. The calculation of possible sentiment is calculated by Naive Bayes Algorithm. The accuracy can be improved by modified the dictionary and algorithm.
+
+
+
 
